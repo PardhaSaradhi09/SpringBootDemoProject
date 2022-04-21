@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Edit/Update Patient Data</title>
+<title>Edit/Update Doctor Data</title>
 <link rel="stylesheet" type="text/css" href="./css/Addpatientcss.css">
 </head>
 <body>

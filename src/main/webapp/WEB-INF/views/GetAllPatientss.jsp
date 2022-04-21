@@ -6,7 +6,7 @@
 <head>
 <title>All Patients</title>
 
-<link rel="stylesheet" type="text/css" href="./css/GetAllPAtientsCss.css">
+<link rel="stylesheet" type="text/css" href="/css/GetAllPAtientsCss.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 	integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
@@ -55,18 +55,18 @@
           <td><c:out value="${patient.address}" /></td>
           <td><c:out value="${patient.dateOfJoin}" /></td>
           <td><c:out value="${patient.dateOfDischarge}" /></td>
-          <td><a href="EditPatientServlet?pid=<c:out value="${patient.pid}" />"><button><i class="fas fa-edit"></i></button></a>
+          <td><a href="EditPatientServlet/<c:out value="${patient.pid}" />"><button><i class="fas fa-edit"></i></button></a>
 								
 							</td>
-						<td><a href="DeleteServlet?pid=<c:out value="${patient.pid}" />"><button name="deleteButton" onclick="return confirm('Are you sure you want to delete patient record')">
+						<td><a href="DeleteServlet/<c:out value="${patient.pid}" />"><button name="deleteButton" onclick="return confirm('Are you sure you want to delete patient record')">
 								<i class="fas fa-trash-alt"></i>
 							</button>
 							</a></td>
-						<td><a href="AddDoctorServlet?pid=<c:out value="${patient.pid}" />"><button name="deleteButton">
+						<td><a href="AddDoctorServlet/<c:out value="${patient.pid}" />"><button name="deleteButton">
 								<i class="fa fa-plus-square"></i>
 							</button>
 							</a></td>
-						<td><a href="ViewServlet?pid=<c:out value="${patient.pid}" />"><button name="deleteButton">
+						<td><a href="ViewServlet/<c:out value="${patient.pid}" />"><button name="deleteButton">
 								<i class="fas fa-eye"></i>
 							</button>
 							</a></td>

@@ -1,23 +1,19 @@
 package org.hospital.service;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hospital.domain.PatientData;
 import org.hospital.utils.PatientServiceUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
 public class PatientJdbcServiceImpl implements PatientService {
-	
-	@Autowired
 
+	@Autowired
 	PatientServiceUtils util;
-	
+
 	@Override
 	/* To retrieve specific patient by pid we can use the getPatient(Pid) method */
 	public PatientData getPatient(int pid) {
@@ -28,7 +24,7 @@ public class PatientJdbcServiceImpl implements PatientService {
 
 	@Override
 	/* To add the record in the database we can use this method */
-	
+
 	public Boolean addPatient(PatientData patient) throws SQLException {
 
 		return util.insertRecord(patient);
@@ -58,7 +54,6 @@ public class PatientJdbcServiceImpl implements PatientService {
 		return util.getAllRecordsByYear(year);
 	}
 
-	
 	@Override
 	public List<PatientData> sortByAge() {
 

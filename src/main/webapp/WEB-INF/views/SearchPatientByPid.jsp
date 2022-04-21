@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Patients</title>
+<title>Patient with ID</title>
 
 <link rel="stylesheet" type="text/css"
 	href="./css/GetAllPAtientsCss.css">

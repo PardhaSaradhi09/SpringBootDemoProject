@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>All Patients</title>
+<title>All Doctors</title>
 
 <link rel="stylesheet" type="text/css" href="./css/GetAllPAtientsCss.css">
 <link rel="stylesheet"

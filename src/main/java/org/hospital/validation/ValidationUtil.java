@@ -1,26 +1,28 @@
 package org.hospital.validation;
 
+
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.hospital.domain.PatientData;
 
 public class ValidationUtil {
 
 	static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-	public static  String validate(HttpServletRequest request) {
+	public static  String validate(PatientData patient) {
 		//Map<String, String> errorMessages = new HashMap<>();
-		String fname = request.getParameter("fname");
-		String lname = request.getParameter("lname");
-		String gender = request.getParameter("gender");
-		String age = request.getParameter("age");
-		String phoneNumber = request.getParameter("phoneNumber");
-		String city = request.getParameter("city");
-		String doj = request.getParameter("DOJ");
-		String dod = request.getParameter("DOD");
+		String fname = patient.getFirstName();
+		String lname = patient.getLastName();
+		String gender = patient.getGender();
+		Integer age = patient.getAge();
+		Long phoneNumber = patient.getPhn();
+		String city = patient.getAddress();
+		LocalDate doj = patient.getDateOfJoin();
+		LocalDate dod =patient.getDateOfDischarge();
 		String error = "";
 		if (fname == null || fname.trim().length() == 0) {
 			error = "First name should not be empty";
@@ -31,37 +33,36 @@ public class ValidationUtil {
 		} else if (gender == null || gender.trim().length() == 0) {
 			error = "gender should not be empty";
 			//errorMessages.put("genderError", error);
-		} else if (age == null || age.trim().length() == 0) {
+		} else if (age == null || String.valueOf(age).trim().length()==0 ) {
 			error = "age should not be empty";
 			//errorMessages.put("ageError", error);
-		} else if (phoneNumber == null || phoneNumber.trim().length() == 0) {
+		} else if (phoneNumber == null || String.valueOf(phoneNumber).trim().length()==0 ) {
 			error = "phoneNumber should not be empty";
 			//errorMessages.put("phoneNumberError", error);
 		} else if (city == null || city.trim().length() == 0) {
 			error = "city should not be empty";
 			//errorMessages.put("cityError", error);
-		} else if (doj == null || doj.trim().length() == 0) {
+		} 
+		else if (doj == null || doj.toString().trim().length()==0 ) {
 
 			error = "doj should not be empty";
 			//errorMessages.put("dojError", error);
-		} else if (dod == null || dod.trim().length() == 0) {
+		} else if (dod == null || dod.toString().trim().length()==0 ) {
 			error = "dod should not be empty";
 			//errorMessages.put("dodError", error);
 		}
-		if (doj != null && doj.trim().length() > 0) {
+		if (doj != null && doj.toString().trim().length() > 0) {
 			try {
-				LocalDate.parse(doj, dtf);
+				LocalDate.parse(dod.toString(), dtf);
 			} catch (Exception e) {
 				error = String.format("invalid doj.error:%s", e.getMessage())+"\n Date of join should in \"yyyy-MM-dd\" format";
 			}
-
 		}
-		if (dod != null && dod.trim().length() > 0) {
+		if (dod != null && dod.toString().trim().length()> 0) {
 			try {
-				LocalDate.parse(dod, dtf);
+				LocalDate.parse(dod.toString(), dtf);
 			} catch (Exception e) {
 				error = String.format("invalid dod.error:%s", e.getMessage())+"\n Date of discharge should in \"yyyy-MM-dd\" format";
-
 			}
 
 		}

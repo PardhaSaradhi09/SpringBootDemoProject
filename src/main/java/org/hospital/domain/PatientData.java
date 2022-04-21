@@ -1,11 +1,6 @@
 package org.hospital.domain;
 
-import java.util.Date;
-
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,23 +8,19 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class PatientData {
 
 	private Integer  pid;
-	@NotNull(message="should not be empty")
-	@Size(min=3, message="should not be empty")
 	private String firstName;
-	@NotNull(message="should not be empty")
 	private String lastName;
-	@NotNull(message="should not be empty")
 	private String gender;
 	private Integer age;
 	private Long phn;
 	private String address;
 	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateOfJoin;
-	 @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateOfDischarge;
+	private LocalDate dateOfJoin;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dateOfDischarge;
 
 	public PatientData(Integer pid, String firstName, String lastName, String gender, Integer age, Long phn, String address,
-			Date dateOfJoin, Date dateOfDischarge) {
+			LocalDate dateOfJoin, LocalDate dateOfDischarge) {
 		super();
 		this.pid = pid;
 		this.firstName = firstName;
@@ -48,7 +39,7 @@ public class PatientData {
 	}
 
 	public PatientData(String firstName, String lastName, String gender, int age, Long phn, String address,
-			Date dateOfJoin, Date dateOfDischarge) {
+			LocalDate dateOfJoin, LocalDate dateOfDischarge) {
 		// TODO Auto-generated constructor stub
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -116,19 +107,19 @@ public class PatientData {
 		this.address = address;
 	}
 
-	public Date getDateOfJoin() {
+	public LocalDate getDateOfJoin() {
 		return dateOfJoin;
 	}
 
-	public void setDateOfJoin(Date dateOfJoin) {
+	public void setDateOfJoin(LocalDate dateOfJoin) {
 		this.dateOfJoin = dateOfJoin;
 	}
 
-	public Date getDateOfDischarge() {
+	public LocalDate getDateOfDischarge() {
 		return dateOfDischarge;
 	}
 
-	public void setDateOfDischarge(Date dateOfDischarge) {
+	public void setDateOfDischarge(LocalDate dateOfDischarge) {
 		this.dateOfDischarge = dateOfDischarge;
 	}
 

@@ -5,7 +5,7 @@
 
 			
 				
-				<p class="error"><c:out value="${errors }"></c:out></p>
+				<p class="error"><c:out value="${emptyFieldError }"></c:out></p>
 				<p class="errors" path="firstName"></p>
 				<input type="hidden"  placeholder="Patient Id*" name="pid" value='<c:out value="${patient.pid}" />'> 
 				<!--  <p class="error"><c:out value="${emptyFliedError.get(fnameError) }"></c:out></p>-->

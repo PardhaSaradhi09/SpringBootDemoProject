@@ -1,6 +1,8 @@
 package org.hospital.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
+
 import org.hospital.doctors.services.DoctorServices;
 import org.hospital.domain.DoctorData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,18 +10,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/ManuhHospital")
 public class DoctorController {
 
 	@Autowired
 	DoctorServices service;
 	ModelAndView mv = new ModelAndView();
+	Logger logger = Logger.getLogger(DoctorController.class.getName());
 
-	@GetMapping("/AddDoctorServlet")
-	public String addDoctorForm(String pid, Model uiModel) {
+	@GetMapping("/AddDoctorServlet/{pid}")
+	public String addDoctorForm(@PathVariable String pid, Model uiModel) {
 		uiModel.addAttribute("pid", pid);
 		return "NewDoctorData";
 

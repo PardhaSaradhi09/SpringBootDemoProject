@@ -5,7 +5,7 @@
 <html>
 <head>
 <title>Edit/Update Patient Data</title>
-<link rel="stylesheet" type="text/css" href="./css/Addpatientcss.css">
+<link rel="stylesheet" type="text/css" href="/css/Addpatientcss.css">
 </head>
 <body>
 	<div class="main header">

@@ -6,7 +6,7 @@
 <head>
 	<title>login</title>
 	
-	<link rel="stylesheet" type="text/css" href="./css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
@@ -24,7 +24,7 @@
 		%></p>-->
  	</div>
  	<div class="main">
- 		<form   id="form" onsubmit="return validateForm()" action="LogInServlet" method="post" >
+ 		<form   id="form" onsubmit="return validateForm()" action="/ManuhHospital/LogInServlet" method="post" >
 			<input  type="text" placeholder="Username" id="Username" name="username">
 			<input  type="password"  placeholder="Password" id="password" name="password">
  			<br>

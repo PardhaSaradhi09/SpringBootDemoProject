@@ -3,7 +3,6 @@ package org.hospital.utils;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.logging.Logger;
 
 import org.hospital.domain.PatientData;
@@ -21,15 +20,20 @@ public class PatientServiceUtils {
 	JdbcTemplate jdbc;
 
 	public Boolean insertRecord(PatientData patient) throws SQLException {
+		try {
 
-		String qury = " insert into patient ( firstName, lastName, gender, age, phn, address, dateOfJoin, dateOfdischarge) values(?,?,?,?,?,?,?,?);";
-		jdbc.update(qury, patient.getFirstName(), patient.getLastName(), patient.getGender(), patient.getAge(),
-				patient.getPhn(), (patient.getAddress()), (patient.getDateOfJoin()), (patient.getDateOfDischarge()));
+			String qury = " insert into patient ( firstName, lastName, gender, age, phn, address, dateOfJoin, dateOfdischarge) values(?,?,?,?,?,?,?,?);";
+			jdbc.update(qury, patient.getFirstName(), patient.getLastName(), patient.getGender(), patient.getAge(),
+					patient.getPhn(), (patient.getAddress()), (patient.getDateOfJoin()),
+					(patient.getDateOfDischarge()));
 
-		logger.info("From database " + patient.getFirstName() + "is inserted into the patient");
-		// System.out.println("From database " + patient.getpid() + "is inserted into
-		// the patien
-		return true;
+			logger.info("From database " + patient.getFirstName() + "is inserted into the patient");
+			// System.out.println("From database " + patient.getpid() + "is inserted into
+			// the patien
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 
 	}
 
@@ -41,7 +45,7 @@ public class PatientServiceUtils {
 		patientList = jdbc.query(query,
 				(rs, rowNum) -> new PatientData(rs.getInt("pid"), rs.getString("firstName"), rs.getString("lastName"),
 						rs.getString("gender"), rs.getInt("age"), rs.getLong("phn"), rs.getString("address"),
-						rs.getDate("dateOfJoin"), rs.getDate("dateOfDischarge")));
+						rs.getDate("dateOfJoin").toLocalDate(), rs.getDate("dateOfDischarge").toLocalDate()));
 
 		logger.info("list" + patientList);
 		logger.info("From jdbc get all record is executed successfully");
@@ -61,21 +65,16 @@ public class PatientServiceUtils {
 	}
 
 	public PatientData getRecordFromTable(int pid) {
-		//PatientData patient = new PatientData();
+		// PatientData patient = new PatientData();
 		String sqlQuery = "select * from patient where pid = ?";
-		Object[] args = {pid};
+		Object[] args = { pid };
 		try {
-			
-		
-		PatientData patient = jdbc.queryForObject(sqlQuery, args, BeanPropertyRowMapper.newInstance(PatientData.class));
-		return patient;
-		}catch(EmptyResultDataAccessException e) {
-			
+			PatientData patient = jdbc.queryForObject(sqlQuery, args,
+					BeanPropertyRowMapper.newInstance(PatientData.class));
+			return patient;
+		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
-		
-//		
-		
 	}
 
 	public List<PatientData> topNRecords(int n) {
@@ -102,7 +101,7 @@ public class PatientServiceUtils {
 		patientList = jdbc.query(query,
 				(rs, rowNum) -> new PatientData(rs.getInt("pid"), rs.getString("firstName"), rs.getString("lastName"),
 						rs.getString("gender"), rs.getInt("age"), rs.getLong("phn"), rs.getString("address"),
-						rs.getDate("dateOfJoin"), rs.getDate("dateOfDischarge")));
+						rs.getDate("dateOfJoin").toLocalDate(), rs.getDate("dateOfDischarge").toLocalDate()));
 
 		logger.info("list" + patientList);
 		logger.info("From jdbc get all record is executed successfully");
@@ -114,11 +113,10 @@ public class PatientServiceUtils {
 		// TODO Auto-generated method stub
 		String qury = "update patient set firstName=?,lastName=?,gender=?,age=?,phn=?,address=?,dateOfJoin=?,dateOfDischarge=? where pid=?;";
 		jdbc.update(qury, patient.getFirstName(), patient.getLastName(), patient.getGender(), patient.getAge(),
-				patient.getPhn(), (patient.getAddress()), (patient.getDateOfJoin()), (patient.getDateOfDischarge()), patient.getpid());
+				patient.getPhn(), (patient.getAddress()), (patient.getDateOfJoin()), (patient.getDateOfDischarge()),
+				patient.getpid());
 
 		logger.info("From database " + patient.getFirstName() + "is updated into the patient");
-		// System.out.println("From database " + patient.getpid() + "is inserted into
-		// the patien
 		return patient;
 	}
 

@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.hospital.domain.PatientData;
-import org.springframework.stereotype.Service;
 
 public interface PatientService {
 	// This method will retrieve the patient record by patient id(pid).
